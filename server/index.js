@@ -74,6 +74,51 @@ app.put('/governmentregistration/updatepassword/:id', async (req, res) => {
     }
 });
 
+//Collecting data and saving in database
+
+//anc data
+app.post("/anc/save-values", async (req, res) => {
+    try {
+
+        const { hosp_id, anc_regis, early_anc_regis, tt2} = req.body;
+        const indicators = calculate_anc_indicators(anc_regis, early_anc_regis, tt2);
+        // console.log("indicators calculated")
+
+        if(early_anc_regis > anc_regis || tt2 > anc_regis) {
+            return res.status(400).json({ error: "Values for early_anc_regis and tt2 must be less than or equal to A." });
+
+        }
+
+        await pool.query("INSERT INTO anc (hosp_id, anc_regis, early_anc_regis, tt2, early_regis_rate, tt2_to_total_anc) VALUES ($1, $2, $3, $4, $5, $6)", [hosp_id, anc_regis, early_anc_regis, tt2, indicators.early_regis_rate, indicators.tt2_to_total_anc]);
+
+        res.json("Data added successfully!");
+    } catch (err) {
+        console.error(err.message);
+    }
+})
+
+//function for anc related indicator calculation
+function calculate_anc_indicators(anc_regis, early_anc_regis, tt2) {
+    const early_regis_rate = (early_anc_regis*100)/anc_regis;
+    const tt2_to_total_anc = (tt2*100)/anc_regis;
+
+    return { early_regis_rate, tt2_to_total_anc};
+}
+
+//JSSK data
+
+//function to calculate JSSK related indicators
+
+//anc data request
+app.get("/indivstimegraph", async (req, res) => {
+    const { indicator, time_range } = req.body;
+
+    const query = `SELECT ${indicator} FROM anc WHERE created_at >= NOW() - INTERVAL '${time_range}'`;
+
+    const result = await pool.query(query);
+
+    res.json(result.rows);
+})
 
 //for developer only
 
