@@ -1,2 +1,2 @@
-# SIH
-This repository is for SIH project
+# HDIMS
+This repository is for HDIMS project
