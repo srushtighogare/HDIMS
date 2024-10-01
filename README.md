@@ -7,7 +7,14 @@ Our prototype has two parts - the front end using react native, and the back end
 The current prototype has been created with the view to understand the basic working logic of our app, before moving ahead with complete development, and thus is very primitive.
 
 
-<—front end react part here—>
+#FRONTEND
+
+The front end part of the prototype is created using the react native for building android application and expo cli as its framework.
+For now the whole frontend is divided into the small screens(Sections).
+For now we have three screens:
+1. Dashboard(GraphScreen where graph will be seen this is for the admin side)
+2. HomeScreen(This is the page where user will land after the registration or login)
+3. Registration(This is registration page where can register themselves as a facility)
 
  The back end of prototype utilizes PostgreSQL for data storage, Express.js as the framework for building API routes, and Argon2 for password hashing, focusing on user registrations and healthcare data management (e.g., ANC-related data) for now.
 
