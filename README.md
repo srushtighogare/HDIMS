@@ -7,7 +7,7 @@ Our prototype has two parts - the front end using react native, and the back end
 The current prototype has been created with the view to understand the basic working logic of our app, before moving ahead with complete development, and thus is very primitive.
 
 
-#FRONTEND
+## FRONTEND
 
 The front end part of the prototype is created using the react native for building android application and expo cli as its framework.
 For now the whole frontend is divided into the small screens(Sections).
@@ -18,12 +18,12 @@ For now we have three screens:
 
  The back end of prototype utilizes PostgreSQL for data storage, Express.js as the framework for building API routes, and Argon2 for password hashing, focusing on user registrations and healthcare data management (e.g., ANC-related data) for now.
 
-##Database Structure:
+## Database Structure:
 1. **profileinfo Database**:
     - govregis Table: Stores government registration information, including usernames, hashed passwords, user levels, and area names.
     - anc Table: Stores antenatal care (ANC) data, including hospital ID, ANC registrations, early ANC registrations, TT2 vaccinations, and calculated health indicators.
 
-##Key Functionalities:
+## Key Functionalities:
 1. **Government Registration (POST):**
     - New user registrations are saved in the `govregis` table.
     - Passwords are securely hashed using Argon2 before being stored.
@@ -47,7 +47,7 @@ For now we have three screens:
 6. **Developer Endpoint (GET):**
     - Retrieves all government registrations for development and testing purposes.
 
-##Technologies Used:
+## Technologies Used:
 - **PostgreSQL:** For relational database management.
 - **Express.js:** For API routes.
 - **Argon2:** For secure password hashing.
